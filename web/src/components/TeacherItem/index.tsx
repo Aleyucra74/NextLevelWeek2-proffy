@@ -35,10 +35,10 @@ return (
                     Preço Hora
                     <strong> R$ {teacher.cost}</strong>
                 </p>
-                <button type="button">
+                <a href={`https://wa.me/${teacher.whatsapp}?text=Ola%20tudo%20bem`}>
                     <img src={whatsappIcon} alt="whatsapp" />
                     Entrar em contato
-                </button>
+                </a>
             </footer>
         </article>
     )
