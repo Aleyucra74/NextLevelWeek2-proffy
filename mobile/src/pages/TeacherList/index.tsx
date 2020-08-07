@@ -3,7 +3,8 @@ import { View, ScrollView, Text, TextInput } from 'react-native';
 import {Feather} from '@expo/vector-icons';
 import { BorderlessButton, RectButton } from 'react-native-gesture-handler';
 import api from '../../services/api';
-import Asyncstorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-community/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 
 import PageHeader from '../../components/PageHeader';
 import TeacherItem, { Teacher } from '../../components/TeacherItem';
@@ -20,7 +21,7 @@ function TeacherList() {
     const [time, setTime] = useState('');
 
     function loadFavorites() {
-        Asyncstorage.getItem('favorites').then(response => {
+        AsyncStorage.getItem('favorites').then(response => {
             if(response) {
                 const favoritedTeachers = JSON.parse(response);
                 const favoritedTeachersIds = favoritedTeachers.map((teacher: Teacher) => {
@@ -31,6 +32,10 @@ function TeacherList() {
             }
         });
     }
+
+    useFocusEffect(() => {
+        loadFavorites();
+    });
 
     function handleToggleFiltersVisible() {
         setisFiltersVisible(!isFiltersVisible);
