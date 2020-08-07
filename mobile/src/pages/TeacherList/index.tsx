@@ -30,6 +30,7 @@ function TeacherList() {
             }
         });
 
+        setisFiltersVisible(false);
         setTeachers(response.data);
     }
 
